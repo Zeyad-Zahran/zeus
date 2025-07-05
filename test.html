@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر عطور فاخر</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif; /*  اختيار خط عربي أنيق */
+            direction: rtl;
+        }
+        .perfume-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease; /* إضافة تأثير انتقال سلس */
+        }
+        .perfume-card:hover {
+            transform: translateY(-5px); /* رفع الكارت عند تمرير المؤشر */
+        }
+        .perfume-image {
+            height: 200px;
+            object-fit: cover; /* تغطية الصورة بالكامل داخل الحاوية */
+        }
+        .btn-custom {
+            background-color: #FFD700; /* لون أصفر ذهبي */
+            border: none;
+            border-radius: 5px;
+            color: #333;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease; /* تأثير انتقال سلس */
+        }
+        .btn-custom:hover {
+            background-color: #DAA520; /* لون برتقالي ذهبي */
+        }
+
+        /* إضافة ألوان جلوة (مثال) */
+        .bg-gold {
+            background-color: #FFD700;
+        }
+        .bg-rose-gold {
+            background-color: #B8860B;
+        }
+        .text-gold {
+            color: #FFD700;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center text-gold mb-4">متجر عطورنا الفاخر</h1>
+
+        <div class="row">
+            <!-- بطاقة عطر مثال -->
+            <div class="col-md-4">
+                <div class="perfume-card bg-rose-gold p-3">
+                    <img src="perfume1.jpg" alt="عطر ١" class="perfume-image img-fluid">  <!--  أضف صورة هنا -->
+                    <h5 class="mt-2">اسم العطر</h5>
+                    <p>وصف قصير للعطر</p>
+                    <button class="btn btn-custom btn-block">اطلب الآن</button>
+                </div>
+            </div>
+
+
+            <!--  كرر نفس الكود أعلاه لإضافة المزيد من عطور -->
+            <div class="col-md-4">
+                <div class="perfume-card p-3">
+                    <img src="perfume2.jpg" alt="عطر ٢" class="perfume-image img-fluid">
+                    <h5 class="mt-2">اسم العطر</h5>
+                    <p>وصف قصير للعطر</p>
+                    <button class="btn btn-custom btn-block">اطلب الآن</button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="perfume-card p-3">
+                    <img src="perfume3.jpg" alt="عطر ٣" class="perfume-image img-fluid">
+                    <h5 class="mt-2">اسم العطر</h5>
+                    <p>وصف قصير للعطر</p>
+                    <button class="btn btn-custom btn-block">اطلب الآن</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
