@@ -111,13 +111,13 @@
       transition: all 0.3s ease;
       flex: 1;
       margin-right: 10px;
-      resize: vertical; /* Allow vertical resizing only */
-      min-height: 44px; /* Minimum height */
-      max-height: 150px; /* Maximum height */
-      overflow-y: auto; /* Add vertical scrollbar if needed */
-      white-space: normal; /* Allow text to wrap to next line */
-      overflow-wrap: break-word; /* Wrap text at the end of the width */
-      height: auto; /* Allow dynamic height adjustment */
+      resize: vertical;
+      min-height: 44px;
+      max-height: 150px;
+      overflow-y: auto;
+      white-space: normal;
+      overflow-wrap: break-word;
+      height: auto;
     }
     #codeLanguage {
       background: rgba(255, 255, 255, 0.1);
