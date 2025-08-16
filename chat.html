@@ -16,6 +16,8 @@
 <body>
   <div class="container">
     <button class="toggle-btn" id="toggleSidebar"><i class="fas fa-bars"></i></button>
+    <!-- Model bubble button -->
+    <button class="model-bubble" data-bs-toggle="modal" data-bs-target="#modelModal"><i class="fas fa-cog"></i></button>
     <h1>Hello ! I'm <strong>Zeus</strong> <i class="fas fa-brain"></i></h1>
     <div class="chat-area" id="chatArea">
       <div class="message bot-message">
@@ -40,16 +42,42 @@
     </div>
   </div>
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <div class="sidebar" id="sidebar">
-      <h2>
-        Conversations
-        <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
-      </h2>
-      <button class="new-chat-btn" id="newChatBtn">
-        <i class="fas fa-plus"></i>New Conversation
-      </button>
-      <ul class="conversation-list" id="conversationList"></ul>
+  <div class="sidebar" id="sidebar">
+    <h2>
+      Conversations
+      <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    </h2>
+    <button class="new-chat-btn" id="newChatBtn">
+      <i class="fas fa-plus"></i>New Conversation
+    </button>
+    <ul class="conversation-list" id="conversationList"></ul>
+  </div>
+
+  <!-- Model Selection Modal -->
+  <div class="modal fade" id="modelModal" tabindex="-1" aria-labelledby="modelModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modelModalLabel">Select Model</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <select id="modelSelect" class="form-select">
+            <option value="zeus">Zeus (Default)</option>
+            <option value="zeus-pro-mini">Zeus Pro Mini</option>
+            <option value="zeus-pro">Zeus Pro</option>
+            <option value="zeus-premium-mini">Zeus Premium Mini</option>
+            <option value="zeus-premium">Zeus Premium</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="confirmModelBtn">Confirm</button>
+        </div>
+      </div>
     </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="JS/main.js"></script>
 </body>

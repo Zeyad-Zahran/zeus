@@ -1,4 +1,7 @@
-    const API_ENDPOINT = "https://asterix-api-chats-ai.vercel.app/api/zeus";
+
+    const API_ENDPOINT_BASE = "https://asterix-api-chats-ai.vercel.app/api/";
+    let API_ENDPOINT = API_ENDPOINT_BASE + "zeus"; // Default endpoint
+
     const chatArea = document.getElementById('chatArea');
     const prompt = document.getElementById('prompt');
     const sendBtn = document.getElementById('sendBtn');
@@ -17,6 +20,8 @@
     const sidebarClose = document.getElementById('sidebarClose');
     const newChatBtn = document.getElementById('newChatBtn');
     const conversationList = document.getElementById('conversationList');
+    const modelSelect = document.getElementById('modelSelect');
+    const confirmModelBtn = document.getElementById('confirmModelBtn');
 
     let conversationHistory = [];
     let conversations = JSON.parse(localStorage.getItem('conversations')) || [];
@@ -273,5 +278,16 @@
 
     newChatBtn.addEventListener('click', startNewConversation);
 
+    // Change endpoint on model confirm
+    confirmModelBtn.addEventListener('click', () => {
+      const selectedModel = modelSelect.value;
+      API_ENDPOINT = API_ENDPOINT_BASE + selectedModel;
+      const modelModal = bootstrap.Modal.getInstance(document.getElementById('modelModal'));
+      modelModal.hide();
+      // Optional: Show a message in chat about model change
+      appendMessage(`Model changed to ${selectedModel} 🚀`, 'bot');
+    });
+
     // Initialize
     startNewConversation();
+  
