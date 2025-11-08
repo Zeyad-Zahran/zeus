@@ -1,5 +1,5 @@
 
-    const API_ENDPOINT_BASE = "https://asterix-api-chats-ai.vercel.app/api/";
+    const API_ENDPOINT_BASE = "https://sard-api-chats-ai.vercel.app/api/";
     let API_ENDPOINT = API_ENDPOINT_BASE + "zeus"; // Default endpoint
 
     const chatArea = document.getElementById('chatArea');
