@@ -1,69 +1,335 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>Chat with Supabase</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; }
-    #chat p { margin: 5px 0; }
-    #inputForm { margin-top: 10px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هالو - صفحة تعريفية</title>
+    <style>
+      /* إعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    direction: rtl;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.highlight {
+    color: #4a6fa5;
+}
+
+/* رأس الصفحة */
+header {
+    background: linear-gradient(135deg, #4a6fa5 0%, #3a5985 100%);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 5px solid #2d466b;
+}
+
+header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* الأقسام الرئيسية */
+section {
+    padding: 60px 0;
+    border-bottom: 1px solid #eee;
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #4a6fa5;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* قسم الميزات */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-card {
+    flex: 1;
+    min-width: 250px;
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+/* قسم كيفية الاستخدام */
+.how-to-use ol {
+    margin-right: 20px;
+    margin-bottom: 40px;
+}
+
+.how-to-use li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    padding-right: 10px;
+}
+
+.chat-preview {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin-top: 30px;
+}
+
+.chat-message {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.chat-message.user {
+    flex-direction: row-reverse;
+}
+
+.chat-message.user .message {
+    background: #4a6fa5;
+    color: white;
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+.chat-message.assistant .message {
+    background: #f0f0f0;
+    margin-right: 15px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: #e9ecef;
+}
+
+.message {
+    flex: 1;
+    padding: 15px;
+    border-radius: 15px;
+    max-width: 80%;
+}
+
+/* قسم المعلومات التقنية */
+.tech-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.info-box {
+    flex: 1;
+    min-width: 250px;
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.info-box h4 {
+    margin-bottom: 15px;
+    color: #4a6fa5;
+}
+
+code {
+    background: #f4f4f4;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-family: monospace;
+    display: inline-block;
+    margin-top: 10px;
+    word-break: break-all;
+}
+
+/* تذييل الصفحة */
+footer {
+    background: #2d466b;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+.footer-note {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 20px;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .features, .tech-info {
+        flex-direction: column;
+    }
+    
+    .feature-card, .info-box {
+        min-width: 100%;
+    }
+    
+    .chat-preview {
+        padding: 15px;
+    }
+}
+    </style>  
+    <!-- Sard AI Chat Widget Script -->
+    <script>
+      (function() {
+        var s = document.createElement('script');
+        s.src = 'https://b0d32e17-3e9d-4748-9cd9-c7408ee47b6b.lovableproject.com/widget.js';
+        s.setAttribute('data-sard-token', '5a7a7ee63d3a72449d3ceeb1b7ef126f');
+        s.async = true;
+        document.head.appendChild(s);
+      })();
+    </script>
 </head>
 <body>
-  <h1>Chat Demo</h1>
-  <div id="chat"></div>
+    <!-- رأس الصفحة -->
+    <header>
+        <div class="container">
+            <h1>مرحبًا بكم في <span class="highlight">هالو</span></h1>
+            <p>صفحتنا التعريفية البسيطة مع مساعد ذكي للدردشة</p>
+        </div>
+    </header>
 
-  <form id="inputForm">
-    <input type="text" id="messageInput" placeholder="Type your message..." required>
-    <button type="submit">Send</button>
-  </form>
+    <!-- المحتوى الرئيسي -->
+    <main class="container">
+        <section class="intro">
+            <h2>عن <span class="highlight">هالو</span></h2>
+            <p>مرحبًا! أنا هالو، صفحة ويب بسيطة أنشئت لتقديم تجربة تعريفية ممتعة. أحتوي على مساعد ذكي يمكنك التحدث معه لمعرفة المزيد عن هذه الصفحة أو طرح أي أسئلة أخرى.</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>دردشة ذكية</h3>
+                    <p>تحدث مع المساعد الذكي المدمج في هذه الصفحة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>تصميم متجاوب</h3>
+                    <p>يعمل على جميع الأجهزة والشاشات المختلفة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>تصميم أنيق</h3>
+                    <p>واجهة مستخدم جميلة وسهلة الاستخدام</p>
+                </div>
+            </div>
+        </section>
 
-  <script>
-    const API_URL = "https://proxy-api-sard-dev.vercel.app/api/functions/v1/chat";
-    const API_TOKEN = "2b8d4611eb8d2d228f2baa3b2b7c99a4f548f0e582b806321ec2e1f7547efd09";
+        <section class="how-to-use">
+            <h2>كيفية استخدام المساعد الذكي</h2>
+            <ol>
+                <li>ابحث عن أيقونة الدردشة في الزاوية اليمنى السفلى من الشاشة</li>
+                <li>انقر على الأيقونة لفتح نافذة الدردشة</li>
+                <li>ابدأ المحادثة مع المساعد الذكي</li>
+                <li>يمكنك طرح أسئلة عن هذه الصفحة أو أي موضوع آخر</li>
+            </ol>
+            
+            <div class="chat-preview">
+                <div class="chat-message user">
+                    <div class="avatar">👤</div>
+                    <div class="message">مرحبًا، من أنت؟</div>
+                </div>
+                <div class="chat-message assistant">
+                    <div class="avatar">🤖</div>
+                    <div class="message">أنا مساعد Sard AI الذكي! أنا هنا لمساعدتك في أي استفسار لديك.</div>
+                </div>
+            </div>
+        </section>
 
-    const chatDiv = document.getElementById("chat");
-    const form = document.getElementById("inputForm");
-    const input = document.getElementById("messageInput");
+        <section class="about">
+            <h2>معلومات تقنية</h2>
+            <p>هذه الصفحة تستخدم واجهة Sard AI Chat Widget التي تعمل بالذكاء الاصطناعي. يمكن للمساعد الإجابة على أسئلتك بلغة طبيعية وفهم سياق المحادثة.</p>
+            
+            <div class="tech-info">
+                <div class="info-box">
+                    <h4>التوكن المستخدم</h4>
+                    <code>5a7a7ee63d3a72449d3ceeb1b7ef126f</code>
+                </div>
+                <div class="info-box">
+                    <h4>نوع التكامل</h4>
+                    <p>JavaScript Widget</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    async function chat(messages) {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-token": API_TOKEN
-        },
-        body: JSON.stringify({ messages, stream: true })
-      });
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const text = decoder.decode(value);
-        const p = document.createElement("p");
-        p.textContent = text;
-        chatDiv.appendChild(p);
-        chatDiv.scrollTop = chatDiv.scrollHeight;
-      }
-    }
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const userMessage = input.value.trim();
-      if (!userMessage) return;
-
-      const p = document.createElement("p");
-      p.textContent = "You: " + userMessage;
-      chatDiv.appendChild(p);
-
-      input.value = "";
-      await chat([{ role: "user", content: userMessage }]);
-    });
-  </script>
+    <!-- تذييل الصفحة -->
+    <footer>
+        <div class="container">
+            <p>© 2023 <span class="highlight">هالو</span>. جميع الحقوق محفوظة.</p>
+            <p class="footer-note">تم إنشاء هذه الصفحة كعرض توضيحي لدمج واجهة Sard AI Chat Widget</p>
+        </div>
+    </footer>
 </body>
 </html>
