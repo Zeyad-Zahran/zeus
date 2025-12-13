@@ -255,6 +255,7 @@
         
         .btn-warning {
             background: #ffc107;
+            color: #212529;
         }
         
         .btn-warning:hover {
@@ -302,6 +303,12 @@
             border: 1px solid #bee5eb;
         }
         
+        .status-warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        
         /* تصميم متجاوب */
         @media (max-width: 768px) {
             header h1 { 
@@ -336,17 +343,6 @@
             }
         }
     </style>
-    
-    <!-- Sard AI Chat Widget Script - الإصدار الجديد -->
-    <script>
-      (function() {
-        var s = document.createElement('script');
-        s.src = 'https://ai.sard.dev/widget.js';
-        s.setAttribute('data-sard-token', 'c7263aa399dde505d38b52462824f197');
-        s.async = true;
-        document.head.appendChild(s);
-      })();
-    </script>
 </head>
 <body>
     <!-- رأس الصفحة -->
@@ -368,13 +364,18 @@
             </div>
             
             <div class="control-buttons">
-                <button id="reload-chat" class="btn">
-                    <span class="loader" id="reload-loader" style="display: none;"></span>
-                    <span id="reload-text">إعادة تحميل الدردشة</span>
+                <button id="load-chat" class="btn btn-success">
+                    <span>🚀</span>
+                    تحميل واجهة الدردشة
                 </button>
                 
-                <button id="test-connection" class="btn btn-success">
-                    <span>✅</span>
+                <button id="reload-chat" class="btn">
+                    <span class="loader" id="reload-loader" style="display: none;"></span>
+                    <span id="reload-text">إعادة تحميل</span>
+                </button>
+                
+                <button id="test-connection" class="btn">
+                    <span>🔗</span>
                     اختبار الاتصال
                 </button>
                 
@@ -406,6 +407,7 @@
         <section class="how-to-use">
             <h2>كيفية استخدام المساعد الذكي</h2>
             <ol>
+                <li>اضغط على زر "تحميل واجهة الدردشة" أعلاه</li>
                 <li>ابحث عن أيقونة الدردشة في الزاوية اليمنى السفلى من الشاشة</li>
                 <li>انقر على الأيقونة لفتح نافذة الدردشة</li>
                 <li>ابدأ المحادثة مع المساعد الذكي</li>
@@ -448,13 +450,13 @@
             
             <div class="info-box" style="margin-top: 30px;">
                 <h4>استكشاف الأخطاء وإصلاحها</h4>
-                <p>إذا لم تظهر واجهة الدردشة، جرب ما يلي:</p>
+                <p>إذا لم تظهر واجهة الدردشة:</p>
                 <ol>
-                    <li>اضغط على زر "إعادة تحميل الدردشة" أعلاه</li>
-                    <li>تحديث الصفحة كاملة (F5)</li>
-                    <li>فتح وحدة تحكم المطور (F12) والبحث عن أخطاء</li>
-                    <li>التأكد من اتصال الإنترنت</li>
-                    <li>محاولة استخدام متصفح مختلف</li>
+                    <li>اضغط على زر "تحميل واجهة الدردشة" أولاً</li>
+                    <li>تأكد من أن السكريبت يحمل التوكن الصحيح</li>
+                    <li>افتح وحدة تحكم المطور (F12) للبحث عن أخطاء</li>
+                    <li>تحقق من اتصال الإنترنت</li>
+                    <li>جرب متصفحاً مختلفاً</li>
                 </ol>
             </div>
         </section>
@@ -464,9 +466,12 @@
     <footer>
         <div class="container">
             <p>© <span id="current-year">2023</span> <span class="highlight">هالو</span>. جميع الحقوق محفوظة.</p>
-            <p class="footer-note">تم إنشاء هذه الصفحة كعرض توضيحي لدمج واجهة Sard AI Chat Widget - الإصدار المعدل</p>
+            <p class="footer-note">تم إنشاء هذه الصفحة كعرض توضيحي لدمج واجهة Sard AI Chat Widget</p>
         </div>
     </footer>
+
+    <!-- مكان لعرض واجهة الدردشة -->
+    <div id="sard-chat-container"></div>
 
     <script>
         // كود JavaScript للتحكم في الصفحة
@@ -474,10 +479,13 @@
             // تحديث السنة الحالية
             document.getElementById('current-year').textContent = new Date().getFullYear();
             
+            // التوكن
+            const SARD_TOKEN = 'c7263aa399dde505d38b52462824f197';
+            const SARD_SCRIPT_URL = 'https://ai.sard.dev/widget.js';
+            
             // نسخ التوكن
             document.getElementById('copy-token').addEventListener('click', function() {
-                const token = document.getElementById('token-display').textContent;
-                navigator.clipboard.writeText(token).then(() => {
+                navigator.clipboard.writeText(SARD_TOKEN).then(() => {
                     const originalText = this.textContent;
                     this.textContent = 'تم النسخ!';
                     this.style.background = '#28a745';
@@ -489,61 +497,153 @@
                 });
             });
             
-            // زر إعادة تحميل الدردشة
-            document.getElementById('reload-chat').addEventListener('click', function() {
-                const reloadText = document.getElementById('reload-text');
-                const reloadLoader = document.getElementById('reload-loader');
+            // دالة لتحميل واجهة الدردشة
+            function loadSardChat() {
                 const statusElement = document.getElementById('chat-status');
+                const testResult = document.getElementById('test-result');
                 
-                // عرض المؤشر
-                reloadText.textContent = 'جاري التحميل...';
-                reloadLoader.style.display = 'inline-block';
-                this.disabled = true;
-                
-                statusElement.textContent = 'جاري إعادة تحميل واجهة الدردشة...';
+                // عرض حالة التحميل
+                statusElement.textContent = 'جاري تحميل واجهة الدردشة...';
                 statusElement.className = 'status-message status-info';
                 
                 // إزالة السكريبت القديم إذا كان موجودًا
                 const oldScript = document.querySelector('script[src*="ai.sard.dev"]');
                 if (oldScript) {
                     oldScript.remove();
+                    console.log('تم إزالة السكريبت القديم');
                 }
                 
-                // إنشاء سكريبت جديد
+                // إزالة أي عناصر سابقة لـ Sard AI
+                document.querySelectorAll('[id*="sard"], [class*="sard"]').forEach(el => {
+                    if (el.tagName !== 'SCRIPT') el.remove();
+                });
+                
+                // إنشاء سكريبت جديد مع التوكن
                 setTimeout(() => {
-                    const newScript = document.createElement('script');
-                    newScript.src = 'https://ai.sard.dev/widget.js';
-                    newScript.setAttribute('data-sard-token', 'c7263aa399dde505d38b52462824f197');
-                    newScript.async = true;
-                    
-                    // معالجة التحميل الناجح
-                    newScript.onload = function() {
-                        reloadText.textContent = 'إعادة تحميل الدردشة';
-                        reloadLoader.style.display = 'none';
-                        document.getElementById('reload-chat').disabled = false;
+                    try {
+                        const script = document.createElement('script');
+                        script.src = SARD_SCRIPT_URL;
                         
-                        statusElement.textContent = '✅ تم تحميل واجهة الدردشة بنجاح!';
-                        statusElement.className = 'status-message status-success';
+                        // إضافة التوكن كخاصية بيانات (data attribute)
+                        script.setAttribute('data-sard-token', SARD_TOKEN);
                         
-                        // اختبار ظهور الأيقونة
-                        setTimeout(() => {
-                            checkChatIcon();
-                        }, 1000);
-                    };
-                    
-                    // معالجة الفشل
-                    newScript.onerror = function() {
-                        reloadText.textContent = 'إعادة تحميل الدردشة';
-                        reloadLoader.style.display = 'none';
-                        document.getElementById('reload-chat').disabled = false;
+                        // إضافة التوكن أيضًا كخاصية مخصصة للتحقق
+                        script.dataset.sardToken = SARD_TOKEN;
                         
-                        statusElement.textContent = '❌ فشل تحميل واجهة الدردشة. تحقق من الاتصال بالإنترنت.';
+                        script.async = true;
+                        
+                        // معالجة التحميل الناجح
+                        script.onload = function() {
+                            console.log('✅ تم تحميل سكريبت Sard AI بنجاح');
+                            console.log('التوكن المستخدم:', this.getAttribute('data-sard-token'));
+                            
+                            statusElement.textContent = '✅ تم تحميل واجهة الدردشة بنجاح! ابحث عن الأيقونة في الزاوية السفلى اليمنى.';
+                            statusElement.className = 'status-message status-success';
+                            
+                            // التحقق من ظهور واجهة الدردشة
+                            setTimeout(() => {
+                                checkChatPresence();
+                            }, 2000);
+                        };
+                        
+                        // معالجة فشل التحميل
+                        script.onerror = function(error) {
+                            console.error('❌ فشل تحميل سكريبت Sard AI:', error);
+                            
+                            statusElement.textContent = '❌ فشل تحميل واجهة الدردشة. تحقق من اتصال الإنترنت أو أن الرابط صحيح.';
+                            statusElement.className = 'status-message status-error';
+                            
+                            if (testResult) {
+                                testResult.textContent = 'فشل تحميل السكريبت. الخطأ: ' + error;
+                                testResult.className = 'status-message status-error';
+                                testResult.style.display = 'block';
+                            }
+                        };
+                        
+                        // إضافة السكريبت إلى الصفحة
+                        document.head.appendChild(script);
+                        console.log('تمت إضافة السكريبت إلى الصفحة مع التوكن:', SARD_TOKEN);
+                        
+                    } catch (error) {
+                        console.error('خطأ في تحميل واجهة الدردشة:', error);
+                        statusElement.textContent = '❌ حدث خطأ: ' + error.message;
                         statusElement.className = 'status-message status-error';
-                    };
-                    
-                    // إضافة السكريبت إلى الصفحة
-                    document.head.appendChild(newScript);
+                    }
                 }, 500);
+            }
+            
+            // دالة للتحقق من وجود واجهة الدردشة
+            function checkChatPresence() {
+                const statusElement = document.getElementById('chat-status');
+                
+                // طرق مختلفة للتحقق من وجود واجهة الدردشة
+                const checks = [
+                    // البحث عن عناصر Sard AI
+                    () => document.querySelectorAll('[id*="sard"], [class*="sard"], [style*="sard"]').length > 0,
+                    
+                    // البحث عن iframes (قد تكون واجهة الدردشة داخل iframe)
+                    () => document.querySelectorAll('iframe[src*="sard"], iframe[title*="Sard"]').length > 0,
+                    
+                    // البحث عن عناصر الدردشة العامة
+                    () => document.querySelectorAll('.chat-widget, .chat-button, .chat-icon').length > 0,
+                    
+                    // البحث في النماذج المخفية
+                    () => {
+                        const elements = document.querySelectorAll('*');
+                        for (let el of elements) {
+                            if (el.id && el.id.includes('sard')) return true;
+                            if (el.className && typeof el.className === 'string' && el.className.includes('sard')) return true;
+                        }
+                        return false;
+                    }
+                ];
+                
+                let chatFound = false;
+                
+                for (let check of checks) {
+                    try {
+                        if (check()) {
+                            chatFound = true;
+                            break;
+                        }
+                    } catch (e) {
+                        console.warn('تحقق فشل:', e);
+                    }
+                }
+                
+                if (chatFound) {
+                    console.log('✅ تم العثور على واجهة الدردشة في الصفحة');
+                    statusElement.textContent = '✅ واجهة الدردشة تعمل! ابحث عن الأيقونة في الزاوية السفلى اليمنى.';
+                    statusElement.className = 'status-message status-success';
+                } else {
+                    console.log('⚠️ لم يتم العثور على واجهة الدردشة بعد');
+                    statusElement.textContent = '⚠️ تم تحميل السكريبت ولكن واجهة الدردشة لم تظهر بعد. قد تكون هناك مشكلة في التوكن.';
+                    statusElement.className = 'status-message status-warning';
+                    
+                    // محاولة أخرى بعد 3 ثواني
+                    setTimeout(checkChatPresence, 3000);
+                }
+            }
+            
+            // زر تحميل الدردشة
+            document.getElementById('load-chat').addEventListener('click', loadSardChat);
+            
+            // زر إعادة التحميل
+            document.getElementById('reload-chat').addEventListener('click', function() {
+                const reloadText = document.getElementById('reload-text');
+                const reloadLoader = document.getElementById('reload-loader');
+                
+                reloadText.textContent = 'جاري إعادة التحميل...';
+                reloadLoader.style.display = 'inline-block';
+                this.disabled = true;
+                
+                loadSardChat();
+                
+                setTimeout(() => {
+                    reloadText.textContent = 'إعادة تحميل';
+                    reloadLoader.style.display = 'none';
+                    this.disabled = false;
+                }, 2000);
             });
             
             // زر اختبار الاتصال
@@ -553,87 +653,81 @@
                 testResult.textContent = 'جاري اختبار الاتصال بخدمة Sard AI...';
                 testResult.className = 'status-message status-info';
                 
-                // اختبار تحميل السكريبت
-                fetch('https://ai.sard.dev/widget.js', { method: 'HEAD', mode: 'no-cors' })
+                // اختبار بسيط للاتصال
+                fetch(SARD_SCRIPT_URL, { method: 'HEAD', mode: 'no-cors' })
                     .then(() => {
-                        testResult.textContent = '✅ الاتصال بخدمة Sard AI يعمل بشكل صحيح. يجب أن تظهر واجهة الدردشة.';
+                        testResult.textContent = '✅ الاتصال بخدمة Sard AI يعمل بشكل صحيح.';
                         testResult.className = 'status-message status-success';
                         
-                        // التحقق من وجود عناصر الدردشة في الصفحة
+                        // التحقق من التوكن
                         setTimeout(() => {
-                            checkChatIcon();
+                            testResult.textContent += ' التوكن: ' + SARD_TOKEN.substring(0, 10) + '...';
+                            
+                            // محاولة تحميل واجهة الدردشة تلقائيًا بعد اختبار الاتصال الناجح
+                            if (!document.querySelector('script[src*="ai.sard.dev"]')) {
+                                setTimeout(loadSardChat, 1000);
+                            }
                         }, 500);
                     })
                     .catch(() => {
-                        testResult.textContent = '⚠️ قد تكون هناك مشكلة في الاتصال بخدمة Sard AI. تحقق من اتصالك بالإنترنت.';
+                        testResult.textContent = '⚠️ لا يمكن الوصول إلى خدمة Sard AI. تحقق من اتصال الإنترنت.';
                         testResult.className = 'status-message status-warning';
                     });
             });
             
             // زر المساعدة
             document.getElementById('show-help').addEventListener('click', function() {
-                alert(`مساعدة - واجهة Sard AI Chat
+                alert(`مساعدة فنية - واجهة Sard AI
 
-1. يجب أن تظهر أيقونة الدردشة في الزاوية السفلى اليمنى من الشاشة
-2. إذا لم تظهر الأيقونة، جرب:
-   - تحديث الصفحة (F5)
-   - الضغط على زر "إعادة تحميل الدردشة"
-   - فتح وحدة تحكم المطور (F12) للبحث عن أخطاء
+المشكلة: "Missing data-sard-token attribute"
 
-3. التوكن المستخدم: c7263aa399dde505d38b52462824f197
-4. رابط السكريبت: https://ai.sard.dev/widget.js
+الحل:
+1. تم إصلاح المشكلة بوضع التوكن مباشرة في سمة data-sard-token
+2. التوكن المستخدم: ${SARD_TOKEN}
+3. إذا استمرت المشكلة، قد يكون التوكن غير صالح
 
-للمساعدة التقنية، تأكد من أن:
-- المتصفح لا يحجب السكريبتات الخارجية
-- اتصال الإنترنت يعمل بشكل صحيح
-- لا توجد إضافات تحجب السكريبتات`);
+خطوات استكشاف الأخطاء:
+1. افتح وحدة تحكم المطور (F12)
+2. اذهب إلى علامة التبويب Network
+3. ابحث عن طلب widget.js
+4. تحقق من حالة الاستجابة (يجب أن تكون 200)
+
+إذا كان التوكن غير صالح:
+1. احصل على توكن جديد من Sard AI
+2. استبدل التوكن في المتغير SARD_TOKEN
+3. أعد تحميل الصفحة واضغط على "تحميل واجهة الدردشة"`);
             });
             
-            // دالة للتحقق من ظهور أيقونة الدردشة
-            function checkChatIcon() {
-                const statusElement = document.getElementById('chat-status');
-                const testResult = document.getElementById('test-result');
-                
-                // البحث عن أي عنصر من واجهة الدردشة
-                const chatElements = document.querySelectorAll('*[id*="sard"], *[class*="sard"], *[style*="sard"]');
-                
-                if (chatElements.length > 0) {
-                    if (testResult) {
-                        testResult.textContent += ' ✅ تم اكتشاف عناصر واجهة الدردشة في الصفحة.';
-                    }
-                    console.log('عناصر Sard AI Chat موجودة في الصفحة:', chatElements.length);
-                } else {
-                    console.log('لم يتم العثور على عناصر Sard AI Chat في الصفحة.');
-                    console.log('تلميح: افتح وحدة تحكم المطور (F12) وابحث عن أخطاء JavaScript.');
-                }
-            }
-            
-            // التحقق التلقائي بعد تحميل الصفحة
+            // محاولة التحميل التلقائي بعد 2 ثانية
             setTimeout(() => {
                 const statusElement = document.getElementById('chat-status');
-                const chatElements = document.querySelectorAll('*[id*="sard"], *[class*="sard"], *[style*="sard"]');
+                statusElement.textContent = '⚡ جاهز للتحميل. اضغط على زر "تحميل واجهة الدردشة" أعلاه.';
+                statusElement.className = 'status-message status-info';
+            }, 2000);
+            
+            // إضافة معالج لأخطاء وحدة التحكم لاكتشاف مشاكل التوكن
+            const originalConsoleError = console.error;
+            console.error = function(...args) {
+                originalConsoleError.apply(console, args);
                 
-                if (chatElements.length > 0) {
-                    statusElement.textContent = '✅ تم تحميل واجهة الدردشة بنجاح! ابحث عن الأيقونة في الزاوية السفلى اليمنى.';
-                    statusElement.className = 'status-message status-success';
-                } else {
-                    statusElement.textContent = '⚠️ واجهة الدردشة لم تتحمّل تلقائيًا. جرب استخدام زر "إعادة تحميل الدردشة".';
-                    statusElement.className = 'status-message status-warning';
+                // إذا كان الخطأ يتعلق بـ Sard AI أو التوكن
+                if (args[0] && typeof args[0] === 'string') {
+                    const errorMsg = args[0].toLowerCase();
+                    if (errorMsg.includes('sard') || errorMsg.includes('token')) {
+                        const statusElement = document.getElementById('chat-status');
+                        statusElement.textContent = '❌ خطأ في التوكن أو واجهة Sard AI. تحقق من وحدة التحكم.';
+                        statusElement.className = 'status-message status-error';
+                        
+                        // عرض رسالة تفصيلية
+                        setTimeout(() => {
+                            alert('تم اكتشاف خطأ في وحدة التحكم يتعلق بـ Sard AI.\n\nافتح وحدة تحكم المطور (F12) لعرض التفاصيل.\n\nقد يكون التوكن غير صالح أو منتهي الصلاحية.');
+                        }, 1000);
+                    }
                 }
-                
-                // التحقق من وجود أخطاء في وحدة التحكم
-                if (typeof console !== 'undefined') {
-                    const originalError = console.error;
-                    console.error = function(...args) {
-                        originalError.apply(console, args);
-                        if (args[0] && typeof args[0] === 'string' && args[0].includes('sard')) {
-                            statusElement.textContent = '❌ حدث خطأ في تحميل واجهة الدردشة. تحقق من وحدة التحكم (F12).';
-                            statusElement.className = 'status-message status-error';
-                        }
-                    };
-                }
-            }, 3000);
+            };
         });
     </script>
+    
+    <!-- لا نضيف السكريبت هنا - سيتم تحميله عبر الزر -->
 </body>
 </html>
