@@ -5,248 +5,344 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>هالو - صفحة تعريفية</title>
     <style>
-      /* إعدادات عامة */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
-    direction: rtl;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.highlight {
-    color: #4a6fa5;
-}
-
-/* رأس الصفحة */
-header {
-    background: linear-gradient(135deg, #4a6fa5 0%, #3a5985 100%);
-    color: white;
-    padding: 60px 0;
-    text-align: center;
-    border-bottom: 5px solid #2d466b;
-}
-
-header h1 {
-    font-size: 2.8rem;
-    margin-bottom: 15px;
-}
-
-header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
-/* الأقسام الرئيسية */
-section {
-    padding: 60px 0;
-    border-bottom: 1px solid #eee;
-}
-
-section:last-of-type {
-    border-bottom: none;
-}
-
-h2 {
-    font-size: 2.2rem;
-    margin-bottom: 25px;
-    color: #333;
-}
-
-h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #4a6fa5;
-}
-
-p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    color: #555;
-}
-
-/* قسم الميزات */
-.features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.feature-card {
-    flex: 1;
-    min-width: 250px;
-    background: white;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-10px);
-}
-
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-/* قسم كيفية الاستخدام */
-.how-to-use ol {
-    margin-right: 20px;
-    margin-bottom: 40px;
-}
-
-.how-to-use li {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    padding-right: 10px;
-}
-
-.chat-preview {
-    background: white;
-    border-radius: 10px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    max-width: 600px;
-    margin-top: 30px;
-}
-
-.chat-message {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.chat-message.user {
-    flex-direction: row-reverse;
-}
-
-.chat-message.user .message {
-    background: #4a6fa5;
-    color: white;
-    margin-left: 15px;
-    margin-right: 0;
-}
-
-.chat-message.assistant .message {
-    background: #f0f0f0;
-    margin-right: 15px;
-}
-
-.avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    background: #e9ecef;
-}
-
-.message {
-    flex: 1;
-    padding: 15px;
-    border-radius: 15px;
-    max-width: 80%;
-}
-
-/* قسم المعلومات التقنية */
-.tech-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.info-box {
-    flex: 1;
-    min-width: 250px;
-    background: white;
-    border-radius: 10px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.info-box h4 {
-    margin-bottom: 15px;
-    color: #4a6fa5;
-}
-
-code {
-    background: #f4f4f4;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-family: monospace;
-    display: inline-block;
-    margin-top: 10px;
-    word-break: break-all;
-}
-
-/* تذييل الصفحة */
-footer {
-    background: #2d466b;
-    color: white;
-    padding: 40px 0;
-    text-align: center;
-}
-
-footer p {
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 10px;
-}
-
-.footer-note {
-    font-size: 0.9rem;
-    opacity: 0.7;
-    margin-top: 20px;
-}
-
-/* تصميم متجاوب */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
+        /* إعدادات عامة */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background-color: #f9f9f9; 
+            direction: rtl; 
+        }
+        
+        .container { 
+            width: 90%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        
+        .highlight { 
+            color: #4a6fa5; 
+        }
+        
+        /* رأس الصفحة */
+        header { 
+            background: linear-gradient(135deg, #4a6fa5 0%, #3a5985 100%); 
+            color: white; 
+            padding: 60px 0; 
+            text-align: center; 
+            border-bottom: 5px solid #2d466b; 
+        }
+        
+        header h1 { 
+            font-size: 2.8rem; 
+            margin-bottom: 15px; 
+        }
+        
+        header p { 
+            font-size: 1.2rem; 
+            opacity: 0.9; 
+        }
+        
+        /* الأقسام الرئيسية */
+        section { 
+            padding: 60px 0; 
+            border-bottom: 1px solid #eee; 
+        }
+        
+        section:last-of-type { 
+            border-bottom: none; 
+        }
+        
+        h2 { 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            color: #333; 
+        }
+        
+        h3 { 
+            font-size: 1.5rem; 
+            margin-bottom: 15px; 
+            color: #4a6fa5; 
+        }
+        
+        p { 
+            font-size: 1.1rem; 
+            margin-bottom: 20px; 
+            color: #555; 
+        }
+        
+        /* قسم الميزات */
+        .features { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: space-between; 
+            gap: 30px; 
+            margin-top: 40px; 
+        }
+        
+        .feature-card { 
+            flex: 1; 
+            min-width: 250px; 
+            background: white; 
+            border-radius: 10px; 
+            padding: 30px; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); 
+            text-align: center; 
+            transition: transform 0.3s ease; 
+        }
+        
+        .feature-card:hover { 
+            transform: translateY(-10px); 
+        }
+        
+        .feature-icon { 
+            font-size: 3rem; 
+            margin-bottom: 20px; 
+        }
+        
+        /* قسم كيفية الاستخدام */
+        .how-to-use ol { 
+            margin-right: 20px; 
+            margin-bottom: 40px; 
+        }
+        
+        .how-to-use li { 
+            margin-bottom: 15px; 
+            font-size: 1.1rem; 
+            padding-right: 10px; 
+        }
+        
+        .chat-preview { 
+            background: white; 
+            border-radius: 10px; 
+            padding: 25px; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); 
+            max-width: 600px; 
+            margin-top: 30px; 
+        }
+        
+        .chat-message { 
+            display: flex; 
+            margin-bottom: 20px; 
+        }
+        
+        .chat-message.user { 
+            flex-direction: row-reverse; 
+        }
+        
+        .chat-message.user .message { 
+            background: #4a6fa5; 
+            color: white; 
+            margin-left: 15px; 
+            margin-right: 0; 
+        }
+        
+        .chat-message.assistant .message { 
+            background: #f0f0f0; 
+            margin-right: 15px; 
+        }
+        
+        .avatar { 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.5rem; 
+            background: #e9ecef; 
+        }
+        
+        .message { 
+            flex: 1; 
+            padding: 15px; 
+            border-radius: 15px; 
+            max-width: 80%; 
+        }
+        
+        /* قسم المعلومات التقنية */
+        .tech-info { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 30px; 
+            margin-top: 30px; 
+        }
+        
+        .info-box { 
+            flex: 1; 
+            min-width: 250px; 
+            background: white; 
+            border-radius: 10px; 
+            padding: 25px; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); 
+        }
+        
+        .info-box h4 { 
+            margin-bottom: 15px; 
+            color: #4a6fa5; 
+        }
+        
+        code { 
+            background: #f4f4f4; 
+            padding: 10px 15px; 
+            border-radius: 5px; 
+            font-family: monospace; 
+            display: inline-block; 
+            margin-top: 10px; 
+            word-break: break-all; 
+        }
+        
+        /* تذييل الصفحة */
+        footer { 
+            background: #2d466b; 
+            color: white; 
+            padding: 40px 0; 
+            text-align: center; 
+        }
+        
+        footer p { 
+            color: rgba(255, 255, 255, 0.8); 
+            margin-bottom: 10px; 
+        }
+        
+        .footer-note { 
+            font-size: 0.9rem; 
+            opacity: 0.7; 
+            margin-top: 20px; 
+        }
+        
+        /* أزرار التحكم */
+        .control-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            background: #3a5985;
+        }
+        
+        .btn-success {
+            background: #28a745;
+        }
+        
+        .btn-success:hover {
+            background: #218838;
+        }
+        
+        .btn-warning {
+            background: #ffc107;
+        }
+        
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+        
+        /* مؤشر التحميل */
+        .loader {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* رسائل الحالة */
+        .status-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status-info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            header h1 { 
+                font-size: 2.2rem; 
+            }
+            
+            h2 { 
+                font-size: 1.8rem; 
+            }
+            
+            .features, .tech-info { 
+                flex-direction: column; 
+            }
+            
+            .feature-card, .info-box { 
+                min-width: 100%; 
+            }
+            
+            .chat-preview { 
+                padding: 15px; 
+            }
+            
+            .control-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
     
-    h2 {
-        font-size: 1.8rem;
-    }
-    
-    .features, .tech-info {
-        flex-direction: column;
-    }
-    
-    .feature-card, .info-box {
-        min-width: 100%;
-    }
-    
-    .chat-preview {
-        padding: 15px;
-    }
-}
-    </style>  
-    <!-- Sard AI Chat Widget Script -->
+    <!-- Sard AI Chat Widget Script - الإصدار الجديد -->
     <script>
       (function() {
         var s = document.createElement('script');
-        s.src = 'https://b0d32e17-3e9d-4748-9cd9-c7408ee47b6b.lovableproject.com/widget.js';
-        s.setAttribute('data-sard-token', '5a7a7ee63d3a72449d3ceeb1b7ef126f');
+        s.src = 'https://ai.sard.dev/widget.js';
+        s.setAttribute('data-sard-token', 'c7263aa399dde505d38b52462824f197');
         s.async = true;
         document.head.appendChild(s);
       })();
@@ -266,6 +362,27 @@ footer p {
         <section class="intro">
             <h2>عن <span class="highlight">هالو</span></h2>
             <p>مرحبًا! أنا هالو، صفحة ويب بسيطة أنشئت لتقديم تجربة تعريفية ممتعة. أحتوي على مساعد ذكي يمكنك التحدث معه لمعرفة المزيد عن هذه الصفحة أو طرح أي أسئلة أخرى.</p>
+            
+            <div id="chat-status" class="status-message status-info">
+                جاري تحميل واجهة الدردشة الذكية...
+            </div>
+            
+            <div class="control-buttons">
+                <button id="reload-chat" class="btn">
+                    <span class="loader" id="reload-loader" style="display: none;"></span>
+                    <span id="reload-text">إعادة تحميل الدردشة</span>
+                </button>
+                
+                <button id="test-connection" class="btn btn-success">
+                    <span>✅</span>
+                    اختبار الاتصال
+                </button>
+                
+                <button id="show-help" class="btn btn-warning">
+                    <span>❓</span>
+                    مساعدة
+                </button>
+            </div>
             
             <div class="features">
                 <div class="feature-card">
@@ -305,6 +422,8 @@ footer p {
                     <div class="message">أنا مساعد Sard AI الذكي! أنا هنا لمساعدتك في أي استفسار لديك.</div>
                 </div>
             </div>
+            
+            <div id="test-result" class="status-message" style="display: none;"></div>
         </section>
 
         <section class="about">
@@ -314,12 +433,29 @@ footer p {
             <div class="tech-info">
                 <div class="info-box">
                     <h4>التوكن المستخدم</h4>
-                    <code>5a7a7ee63d3a72449d3ceeb1b7ef126f</code>
+                    <code id="token-display">c7263aa399dde505d38b52462824f197</code>
+                    <button id="copy-token" class="btn" style="margin-top: 10px; padding: 8px 15px; font-size: 0.9rem; width: auto;">
+                        نسخ التوكن
+                    </button>
                 </div>
                 <div class="info-box">
                     <h4>نوع التكامل</h4>
                     <p>JavaScript Widget</p>
+                    <p>URL المصدر: <code style="font-size: 0.9rem;">https://ai.sard.dev/widget.js</code></p>
+                    <p style="margin-top: 10px; color: #28a745; font-weight: 500;">✓ الإصدار الجديد</p>
                 </div>
+            </div>
+            
+            <div class="info-box" style="margin-top: 30px;">
+                <h4>استكشاف الأخطاء وإصلاحها</h4>
+                <p>إذا لم تظهر واجهة الدردشة، جرب ما يلي:</p>
+                <ol>
+                    <li>اضغط على زر "إعادة تحميل الدردشة" أعلاه</li>
+                    <li>تحديث الصفحة كاملة (F5)</li>
+                    <li>فتح وحدة تحكم المطور (F12) والبحث عن أخطاء</li>
+                    <li>التأكد من اتصال الإنترنت</li>
+                    <li>محاولة استخدام متصفح مختلف</li>
+                </ol>
             </div>
         </section>
     </main>
@@ -327,9 +463,177 @@ footer p {
     <!-- تذييل الصفحة -->
     <footer>
         <div class="container">
-            <p>© 2023 <span class="highlight">هالو</span>. جميع الحقوق محفوظة.</p>
-            <p class="footer-note">تم إنشاء هذه الصفحة كعرض توضيحي لدمج واجهة Sard AI Chat Widget</p>
+            <p>© <span id="current-year">2023</span> <span class="highlight">هالو</span>. جميع الحقوق محفوظة.</p>
+            <p class="footer-note">تم إنشاء هذه الصفحة كعرض توضيحي لدمج واجهة Sard AI Chat Widget - الإصدار المعدل</p>
         </div>
     </footer>
+
+    <script>
+        // كود JavaScript للتحكم في الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحديث السنة الحالية
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // نسخ التوكن
+            document.getElementById('copy-token').addEventListener('click', function() {
+                const token = document.getElementById('token-display').textContent;
+                navigator.clipboard.writeText(token).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'تم النسخ!';
+                    this.style.background = '#28a745';
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.background = '';
+                    }, 2000);
+                });
+            });
+            
+            // زر إعادة تحميل الدردشة
+            document.getElementById('reload-chat').addEventListener('click', function() {
+                const reloadText = document.getElementById('reload-text');
+                const reloadLoader = document.getElementById('reload-loader');
+                const statusElement = document.getElementById('chat-status');
+                
+                // عرض المؤشر
+                reloadText.textContent = 'جاري التحميل...';
+                reloadLoader.style.display = 'inline-block';
+                this.disabled = true;
+                
+                statusElement.textContent = 'جاري إعادة تحميل واجهة الدردشة...';
+                statusElement.className = 'status-message status-info';
+                
+                // إزالة السكريبت القديم إذا كان موجودًا
+                const oldScript = document.querySelector('script[src*="ai.sard.dev"]');
+                if (oldScript) {
+                    oldScript.remove();
+                }
+                
+                // إنشاء سكريبت جديد
+                setTimeout(() => {
+                    const newScript = document.createElement('script');
+                    newScript.src = 'https://ai.sard.dev/widget.js';
+                    newScript.setAttribute('data-sard-token', 'c7263aa399dde505d38b52462824f197');
+                    newScript.async = true;
+                    
+                    // معالجة التحميل الناجح
+                    newScript.onload = function() {
+                        reloadText.textContent = 'إعادة تحميل الدردشة';
+                        reloadLoader.style.display = 'none';
+                        document.getElementById('reload-chat').disabled = false;
+                        
+                        statusElement.textContent = '✅ تم تحميل واجهة الدردشة بنجاح!';
+                        statusElement.className = 'status-message status-success';
+                        
+                        // اختبار ظهور الأيقونة
+                        setTimeout(() => {
+                            checkChatIcon();
+                        }, 1000);
+                    };
+                    
+                    // معالجة الفشل
+                    newScript.onerror = function() {
+                        reloadText.textContent = 'إعادة تحميل الدردشة';
+                        reloadLoader.style.display = 'none';
+                        document.getElementById('reload-chat').disabled = false;
+                        
+                        statusElement.textContent = '❌ فشل تحميل واجهة الدردشة. تحقق من الاتصال بالإنترنت.';
+                        statusElement.className = 'status-message status-error';
+                    };
+                    
+                    // إضافة السكريبت إلى الصفحة
+                    document.head.appendChild(newScript);
+                }, 500);
+            });
+            
+            // زر اختبار الاتصال
+            document.getElementById('test-connection').addEventListener('click', function() {
+                const testResult = document.getElementById('test-result');
+                testResult.style.display = 'block';
+                testResult.textContent = 'جاري اختبار الاتصال بخدمة Sard AI...';
+                testResult.className = 'status-message status-info';
+                
+                // اختبار تحميل السكريبت
+                fetch('https://ai.sard.dev/widget.js', { method: 'HEAD', mode: 'no-cors' })
+                    .then(() => {
+                        testResult.textContent = '✅ الاتصال بخدمة Sard AI يعمل بشكل صحيح. يجب أن تظهر واجهة الدردشة.';
+                        testResult.className = 'status-message status-success';
+                        
+                        // التحقق من وجود عناصر الدردشة في الصفحة
+                        setTimeout(() => {
+                            checkChatIcon();
+                        }, 500);
+                    })
+                    .catch(() => {
+                        testResult.textContent = '⚠️ قد تكون هناك مشكلة في الاتصال بخدمة Sard AI. تحقق من اتصالك بالإنترنت.';
+                        testResult.className = 'status-message status-warning';
+                    });
+            });
+            
+            // زر المساعدة
+            document.getElementById('show-help').addEventListener('click', function() {
+                alert(`مساعدة - واجهة Sard AI Chat
+
+1. يجب أن تظهر أيقونة الدردشة في الزاوية السفلى اليمنى من الشاشة
+2. إذا لم تظهر الأيقونة، جرب:
+   - تحديث الصفحة (F5)
+   - الضغط على زر "إعادة تحميل الدردشة"
+   - فتح وحدة تحكم المطور (F12) للبحث عن أخطاء
+
+3. التوكن المستخدم: c7263aa399dde505d38b52462824f197
+4. رابط السكريبت: https://ai.sard.dev/widget.js
+
+للمساعدة التقنية، تأكد من أن:
+- المتصفح لا يحجب السكريبتات الخارجية
+- اتصال الإنترنت يعمل بشكل صحيح
+- لا توجد إضافات تحجب السكريبتات`);
+            });
+            
+            // دالة للتحقق من ظهور أيقونة الدردشة
+            function checkChatIcon() {
+                const statusElement = document.getElementById('chat-status');
+                const testResult = document.getElementById('test-result');
+                
+                // البحث عن أي عنصر من واجهة الدردشة
+                const chatElements = document.querySelectorAll('*[id*="sard"], *[class*="sard"], *[style*="sard"]');
+                
+                if (chatElements.length > 0) {
+                    if (testResult) {
+                        testResult.textContent += ' ✅ تم اكتشاف عناصر واجهة الدردشة في الصفحة.';
+                    }
+                    console.log('عناصر Sard AI Chat موجودة في الصفحة:', chatElements.length);
+                } else {
+                    console.log('لم يتم العثور على عناصر Sard AI Chat في الصفحة.');
+                    console.log('تلميح: افتح وحدة تحكم المطور (F12) وابحث عن أخطاء JavaScript.');
+                }
+            }
+            
+            // التحقق التلقائي بعد تحميل الصفحة
+            setTimeout(() => {
+                const statusElement = document.getElementById('chat-status');
+                const chatElements = document.querySelectorAll('*[id*="sard"], *[class*="sard"], *[style*="sard"]');
+                
+                if (chatElements.length > 0) {
+                    statusElement.textContent = '✅ تم تحميل واجهة الدردشة بنجاح! ابحث عن الأيقونة في الزاوية السفلى اليمنى.';
+                    statusElement.className = 'status-message status-success';
+                } else {
+                    statusElement.textContent = '⚠️ واجهة الدردشة لم تتحمّل تلقائيًا. جرب استخدام زر "إعادة تحميل الدردشة".';
+                    statusElement.className = 'status-message status-warning';
+                }
+                
+                // التحقق من وجود أخطاء في وحدة التحكم
+                if (typeof console !== 'undefined') {
+                    const originalError = console.error;
+                    console.error = function(...args) {
+                        originalError.apply(console, args);
+                        if (args[0] && typeof args[0] === 'string' && args[0].includes('sard')) {
+                            statusElement.textContent = '❌ حدث خطأ في تحميل واجهة الدردشة. تحقق من وحدة التحكم (F12).';
+                            statusElement.className = 'status-message status-error';
+                        }
+                    };
+                }
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
